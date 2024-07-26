@@ -12,7 +12,8 @@ $routes->get('/', 'Home::index');
 $routes->group('api', ['namespace' => 'App\Controllers\Api'], function ($routes) {
     $routes->post('add-student', 'ApiController::addStudent');
     $routes->get('list-students', 'ApiController::listStudents');
-    $routes->get('single-student/(:num)', 'ApiController::singleStudentData/$1');
-    $routes->put('update-student/(:num)', 'ApiController::updateStudent/$1');
-    $routes->delete('delete-student/(:num)', 'ApiController::deleteStudent/$1');
+    $routes->get('single-student/(:segment)', 'ApiController::singleStudentData/$1');
+
+    $routes->put('update-student/(:segment)', 'ApiController::updateStudent/$1');
+    $routes->delete('delete-student/(:segment)', 'ApiController::deleteStudent/$1');
 });
