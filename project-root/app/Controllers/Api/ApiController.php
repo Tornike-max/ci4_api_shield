@@ -170,5 +170,27 @@ class ApiController extends ResourceController
 
     public function deleteStudent($student_id)
     {
+        if (empty($student_id)) {
+            $response = [
+                'status' => 'false',
+                'message' => 'Student id is required'
+            ];
+        }
+
+        $model = model(StudentModel::class);
+
+        $student = $model->find($student_id);
+
+        if (isset($student)) {
+            $deletion = $model->delete($student_id);
+            if ($deletion) {
+                $response = [
+                    'status' => 'true',
+                    'message' => 'Success'
+                ];
+            }
+        }
+
+        return $this->respondCreated($response);
     }
 }
